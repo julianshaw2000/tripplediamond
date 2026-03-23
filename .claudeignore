@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# .NET build output
+bin/
+obj/
+
+# Angular build output
+packages/web/dist/
+packages/web/.angular/
+
+# Shared TS build output
+packages/shared/dist/
+
+# Secrets
+.env
+.env.*
+.cursor/mcp.json
+*.secrets
+docs/neon.secrets
+docs/auth0.secrets
+docs/cloudfare.secrets
+**/appsettings.Development.json
+
+# Logs
+*.log
+
+# Test results & coverage
+packages/api/TestResults/
+packages/web/coverage/
+packages/web/test-results/
+packages/web/playwright-report/
+
+# Local storage
+packages/api/src/Tungsten.Api/storage/
+
+# Playwright browsers
+packages/web/node_modules/.cache/
+
+# EF Core migrations (large auto-generated files)
+packages/api/src/Tungsten.Api/Migrations/*Designer.cs
+packages/api/src/Tungsten.Api/Migrations/*ModelSnapshot.cs

@@ -1,0 +1,78 @@
+# Dependencies
+node_modules/
+packages/*/node_modules/
+package-lock.json
+
+# .NET build output
+bin/
+obj/
+packages/api/src/Tungsten.Api/bin/
+packages/api/src/Tungsten.Api/obj/
+packages/api/tests/Tungsten.Api.Tests/bin/
+packages/api/tests/Tungsten.Api.Tests/obj/
+packages/worker/Tungsten.Worker/bin/
+packages/worker/Tungsten.Worker/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Angular build output
+packages/web/dist/
+packages/web/.angular/
+packages/web/.sass-cache/
+
+# Shared TS build output
+packages/shared/dist/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+
+# MCP config (contains API keys)
+.cursor/mcp.json
+
+# Secrets
+*.secrets
+docs/neon.secrets
+docs/auth0.secrets
+docs/cloudfare.secrets
+docs/auth0-token.tmp
+
+# App settings with secrets
+**/appsettings.Development.json
+
+# IDE
+.idea/
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+firebase-debug.log
+
+# Test results
+packages/api/TestResults/
+packages/web/coverage/
+
+# Playwright
+packages/web/test-results/
+packages/web/playwright-report/
+
+# Local storage (dev file uploads)
+packages/api/src/Tungsten.Api/storage/
+
+# Claude memory (personal)
+.claude/
