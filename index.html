@@ -8,32 +8,42 @@
   <link rel="icon" href="https://www.triplediamondmus.com/wp-content/uploads/2024/12/Website-icon-100x100.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: {
-              cream: '#FAF6EE',
+            td: {
+              forest: '#1A4D2E',
+              emerald: '#2E7D4F',
+              sage: '#8FBC8F',
+              sageLight: '#C8E6C0',
+              mint: '#E8F5E8',
+              cream: '#FFF8F0',
               ivory: '#FFFEF5',
-              linen: '#F3EDE3',
-              sage: '#E8ECE0',
-              bark: '#3D3125',
-              dark: '#1C1C1C',
-              green: '#1B3A2A',
-              greenDeep: '#0F2A1C',
-              gold: '#B49A5E',
-              goldLight: '#C8B07A',
-              goldMuted: '#A08A55',
-              muted: '#8A7A6A',
-              subtle: '#C4BAA8',
+              linen: '#F5EDE0',
+              gold: '#C8973E',
+              goldLight: '#D4A84A',
+              goldWarm: '#E8C36A',
+              amber: '#B8860B',
+              brown: '#5D4037',
+              brownLight: '#8B7355',
+              bark: '#3E2723',
+              rose: '#E8A0BF',
+              roseMuted: '#D4849A',
+              peach: '#FFDAB9',
+              charcoal: '#2C2C2C',
             },
           },
           fontFamily: {
-            serif: ['Cormorant', 'Georgia', 'serif'],
-            sans: ['Jost', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Raleway', 'system-ui', 'sans-serif'],
             hand: ['Caveat', 'cursive'],
+          },
+          borderRadius: {
+            'organic': '60% 40% 50% 50% / 50% 60% 40% 50%',
+            'blob': '30% 70% 70% 30% / 30% 30% 70% 70%',
           },
         },
       },
@@ -42,579 +52,406 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Jost', system-ui, sans-serif; background: #FAF6EE; color: #1C1C1C; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Raleway', system-ui, sans-serif; background: #FFF8F0; color: #2C2C2C; -webkit-font-smoothing: antialiased; }
 
     /* ── Fluid type ── */
-    .fluid-hero { font-size: clamp(2.5rem, 5vw + 1rem, 5rem); }
-    .fluid-h2   { font-size: clamp(2rem, 3vw + .5rem, 3.5rem); }
-    .fluid-h3   { font-size: clamp(1.4rem, 2vw, 2rem); }
+    .fl-hero { font-size: clamp(2.8rem, 6vw + .5rem, 5.5rem); }
+    .fl-h2   { font-size: clamp(2rem, 3.5vw + .3rem, 3.8rem); }
 
     /* ── Scroll reveals ── */
-    [data-r] { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
+    [data-r] { opacity: 0; transform: translateY(30px); transition: opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1); }
     [data-r].v { opacity: 1; transform: none; }
+
+    /* ── Organic blob shapes ── */
+    .blob-1 { border-radius: 60% 40% 55% 45% / 55% 60% 40% 45%; }
+    .blob-2 { border-radius: 40% 60% 45% 55% / 45% 40% 60% 55%; }
+    .blob-3 { border-radius: 50% 50% 35% 65% / 60% 40% 60% 40%; }
 
     /* ── Marquee ── */
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .marquee-inner { animation: scroll 35s linear infinite; }
-    .marquee-inner:hover { animation-play-state: paused; }
+    .marquee-inner { animation: scroll 40s linear infinite; }
 
     /* ── Nav ── */
-    #nav { transition: background .45s, box-shadow .45s, backdrop-filter .45s; }
-    #nav.is-scrolled { background: rgba(250,246,238,.94); backdrop-filter: blur(20px) saturate(1.3); box-shadow: 0 1px 0 rgba(0,0,0,.04); }
-    .nl { color: #3D3125; transition: color .3s, opacity .3s; }
-    .nl:hover { color: #1B3A2A; }
+    #nav { background: rgba(255,248,240,.85); backdrop-filter: blur(16px) saturate(1.4); transition: box-shadow .4s; }
+    #nav.scrolled { box-shadow: 0 1px 20px rgba(26,77,46,.06); }
+    .nl { color: #3E2723; transition: color .3s; cursor: pointer; }
+    .nl:hover { color: #1A4D2E; }
 
     /* ── Dropdown ── */
     .dd-wrap { opacity: 0; visibility: hidden; transform: translateY(8px); transition: all .25s cubic-bezier(.22,1,.36,1); }
     .dd:hover .dd-wrap, .dd:focus-within .dd-wrap { opacity: 1; visibility: visible; transform: translateY(0); }
 
-    /* ── Hero ken burns ── */
-    @keyframes kb { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-    .kb { animation: kb 25s ease-out forwards; }
+    /* ── Hero float ── */
+    @keyframes heroFloat { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
+    .hero-float { animation: heroFloat 6s ease-in-out infinite; }
+
+    /* ── Product cards ── */
+    .pc { border-radius: 16px; transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s; cursor: pointer; }
+    .pc:hover { transform: translateY(-8px); box-shadow: 0 28px 60px -15px rgba(26,77,46,.15); }
+    .pc .pc-img { transition: transform .6s cubic-bezier(.22,1,.36,1); }
+    .pc:hover .pc-img { transform: scale(1.06); }
+    .pc .pc-btn { transition: all .3s cubic-bezier(.22,1,.36,1); cursor: pointer; }
+    .pc .pc-btn:hover { background: #1A4D2E; color: #FFF8F0; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,77,46,.25); }
+
+    /* ── Review cards ── */
+    .rv-track { scrollbar-width: none; }
+    .rv-track::-webkit-scrollbar { display: none; }
+
+    /* ── Mobile nav ── */
+    #mob { transform: translateX(100%); transition: transform .4s cubic-bezier(.22,1,.36,1); }
+    #mob.open { transform: translateX(0); }
+    #mobBg { opacity: 0; pointer-events: none; transition: opacity .35s; }
+    #mobBg.open { opacity: 1; pointer-events: auto; }
 
     /* ── Parallax ── */
     .parallax-bg { background-attachment: fixed; background-size: cover; background-position: center; }
     @media (hover: none) { .parallax-bg { background-attachment: scroll; } }
 
-    /* ── Product cards ── */
-    .pc { transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s; }
-    .pc:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -15px rgba(27,58,42,.1); }
-    .pc .pc-img2 { opacity: 0; transition: opacity .5s; }
-    .pc:hover .pc-img2 { opacity: 1; }
-    .pc:hover .pc-img1 { opacity: 0; }
-    .pc .pc-img1 { transition: opacity .5s; }
-    .pc .pc-btn { transition: background .3s, color .3s, box-shadow .3s; }
-    .pc .pc-btn:hover { background: #1B3A2A; color: #FAF6EE; box-shadow: 0 4px 20px rgba(27,58,42,.25); }
+    /* ── Gradient text ── */
+    .grad-text { background: linear-gradient(135deg, #1A4D2E 0%, #2E7D4F 40%, #C8973E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-    /* ── Review slider ── */
-    .rv-track { scrollbar-width: none; }
-    .rv-track::-webkit-scrollbar { display: none; }
+    /* ── Organic decorative shapes ── */
+    .deco-circle { position: absolute; border-radius: 50%; pointer-events: none; }
 
-    /* ── Mobile nav ── */
-    #mob { transform: translateX(100%); transition: transform .45s cubic-bezier(.22,1,.36,1); }
-    #mob.open { transform: translateX(0); }
-    #mobBg { opacity: 0; pointer-events: none; transition: opacity .35s; }
-    #mobBg.open { opacity: 1; pointer-events: auto; }
+    /* ── CTA glow ── */
+    .cta-glow { box-shadow: 0 4px 25px rgba(200,151,62,.3); transition: all .3s; }
+    .cta-glow:hover { box-shadow: 0 8px 35px rgba(200,151,62,.45); transform: translateY(-2px); }
 
-    /* ── Quote marks ── */
-    .quote-mark { font-family: 'Cormorant', serif; font-size: 5rem; line-height: 1; color: #B49A5E; opacity: .25; position: absolute; top: -.5rem; left: -.25rem; }
+    /* ── Trust icon pulse ── */
+    @keyframes pulse-soft { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .trust-icon { animation: pulse-soft 3s ease-in-out infinite; }
 
-    /* ── Ingredient icon float ── */
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-    .icon-float { animation: float 3.5s ease-in-out infinite; }
+    /* ── Star color ── */
+    .star { color: #C8973E; }
+
+    /* ── prefers-reduced-motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 
 <body class="font-sans antialiased overflow-x-hidden">
 
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  ANNOUNCEMENT MARQUEE                         -->
-  <!-- ═════════════════════════════════════════════ -->
-  <div class="bg-brand-dark overflow-hidden select-none">
+  <!-- ═══════════ ANNOUNCEMENT MARQUEE ═══════════ -->
+  <div class="bg-td-forest overflow-hidden select-none">
     <div class="marquee-inner flex whitespace-nowrap py-2.5">
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">Free UK Delivery on Orders Over £30</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">100% Handmade &amp; Organic</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">Vegan &amp; Cruelty-Free</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">Crafted in the UK &amp; Nigeria</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">Plant-Based Ingredients</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">Free UK Delivery on Orders Over £30</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">100% Handmade &amp; Organic</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">Vegan &amp; Cruelty-Free</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">Crafted in the UK &amp; Nigeria</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
-      <span class="mx-6 text-[11px] tracking-[.18em] uppercase text-white/70 font-light">Plant-Based Ingredients</span>
-      <span class="mx-3 text-brand-gold/40 text-xs">◆</span>
+      <span class="mx-6 text-[11px] tracking-[.2em] uppercase text-white/80 font-light">Free UK Delivery Over £30</span>
+      <span class="mx-3 text-td-goldWarm/50 text-[10px]">✦</span>
+      <span class="mx-6 text-[11px] tracking-[.2em] uppercase text-white/80 font-light">100% Handmade &amp; Organic</span>
+      <span class="mx-3 text-td-goldWarm/50 text-[10px]">✦</span>
+      <span class="mx-6 text-[11px] tracking-[.2em] uppercase text-white/80 font-light">Vegan &amp; Cruelty-Free</span>
+      <span class="mx-3 text-td-goldWarm/50 text-[10px]">✦</span>
+      <span class="mx-6 text-[11px] tracking-[.2em] uppercase text-white/80 font-light">Crafted in UK &amp; Nigeria</span>
+      <span class="mx-3 text-td-goldWarm/50 text-[10px]">✦</span>
+      <span class="mx-6 text-[11px] tracking-[.2em] uppercase text-white/80 font-light">Free UK Delivery Over £30</span>
+      <span class="mx-3 text-td-goldWarm/50 text-[10px]">✦</span>
+      <span class="mx-6 text-[11px] tracking-[.2em] uppercase text-white/80 font-light">100% Handmade &amp; Organic</span>
+      <span class="mx-3 text-td-goldWarm/50 text-[10px]">✦</span>
+      <span class="mx-6 text-[11px] tracking-[.2em] uppercase text-white/80 font-light">Vegan &amp; Cruelty-Free</span>
+      <span class="mx-3 text-td-goldWarm/50 text-[10px]">✦</span>
+      <span class="mx-6 text-[11px] tracking-[.2em] uppercase text-white/80 font-light">Crafted in UK &amp; Nigeria</span>
+      <span class="mx-3 text-td-goldWarm/50 text-[10px]">✦</span>
     </div>
   </div>
 
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  NAVIGATION                                   -->
-  <!-- ═════════════════════════════════════════════ -->
-  <nav id="nav" class="sticky top-0 z-50">
-    <div class="max-w-[1440px] mx-auto px-6 sm:px-10 flex items-center justify-between h-[72px]">
-      <a href="#" class="shrink-0">
-        <img src="https://www.triplediamondmus.com/wp-content/uploads/2024/12/Triple-Diamond-handmade-logo.png" alt="Triple Diamond" class="n-logo h-9 sm:h-10" />
-      </a>
-      <div class="hidden lg:flex items-center gap-9">
-        <a href="#" class="nl text-[12px] font-medium tracking-[.08em] uppercase">Home</a>
-        <a href="#products" class="nl text-[12px] font-medium tracking-[.08em] uppercase">Handmade Soap</a>
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav id="nav" class="sticky top-0 z-50 border-b border-td-sage/20">
+    <div class="max-w-[1400px] mx-auto px-5 sm:px-8 flex items-center justify-between h-[68px]">
+      <a href="#" class="shrink-0"><img src="https://www.triplediamondmus.com/wp-content/uploads/2024/12/Triple-Diamond-handmade-logo.png" alt="Triple Diamond" class="h-9 sm:h-10" /></a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#" class="nl text-[12px] font-semibold tracking-[.06em] uppercase">Home</a>
+        <a href="#products" class="nl text-[12px] font-semibold tracking-[.06em] uppercase">Handmade Soap</a>
         <div class="dd relative">
-          <button class="nl text-[12px] font-medium tracking-[.08em] uppercase flex items-center gap-1">Shop by Categories <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></button>
-          <div class="dd-wrap absolute top-full left-1/2 -translate-x-1/2 pt-4 w-60">
-            <div class="bg-white/95 backdrop-blur-xl rounded-lg shadow-2xl ring-1 ring-black/[.04] py-2">
-              <a href="#" class="block px-5 py-2.5 text-[13px] text-brand-bark hover:bg-brand-sage/60 hover:text-brand-green transition-colors">100% Handmade Soap</a>
-              <a href="#" class="block px-5 py-2.5 text-[13px] text-brand-bark hover:bg-brand-sage/60 hover:text-brand-green transition-colors">Face Oil</a>
-              <a href="#" class="block px-5 py-2.5 text-[13px] text-brand-bark hover:bg-brand-sage/60 hover:text-brand-green transition-colors">Luxury Skincare Set</a>
-              <a href="#" class="block px-5 py-2.5 text-[13px] text-brand-bark hover:bg-brand-sage/60 hover:text-brand-green transition-colors">Combo Set</a>
-              <a href="#" class="block px-5 py-2.5 text-[13px] text-brand-bark hover:bg-brand-sage/60 hover:text-brand-green transition-colors">Body Butter</a>
-              <a href="#" class="block px-5 py-2.5 text-[13px] text-brand-bark hover:bg-brand-sage/60 hover:text-brand-green transition-colors">Organic Shea Butter</a>
-              <a href="#" class="block px-5 py-2.5 text-[13px] text-brand-bark hover:bg-brand-sage/60 hover:text-brand-green transition-colors">Organic Honey</a>
+          <button class="nl text-[12px] font-semibold tracking-[.06em] uppercase flex items-center gap-1">Categories <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="dd-wrap absolute top-full left-1/2 -translate-x-1/2 pt-3 w-56">
+            <div class="bg-white rounded-2xl shadow-xl ring-1 ring-black/[.04] py-2 overflow-hidden">
+              <a href="#" class="block px-5 py-2.5 text-[13px] text-td-brown hover:bg-td-mint hover:text-td-forest transition-colors cursor-pointer">100% Handmade Soap</a>
+              <a href="#" class="block px-5 py-2.5 text-[13px] text-td-brown hover:bg-td-mint hover:text-td-forest transition-colors cursor-pointer">Face Oil</a>
+              <a href="#" class="block px-5 py-2.5 text-[13px] text-td-brown hover:bg-td-mint hover:text-td-forest transition-colors cursor-pointer">Luxury Skincare Set</a>
+              <a href="#" class="block px-5 py-2.5 text-[13px] text-td-brown hover:bg-td-mint hover:text-td-forest transition-colors cursor-pointer">Combo Set</a>
+              <a href="#" class="block px-5 py-2.5 text-[13px] text-td-brown hover:bg-td-mint hover:text-td-forest transition-colors cursor-pointer">Body Butter</a>
+              <a href="#" class="block px-5 py-2.5 text-[13px] text-td-brown hover:bg-td-mint hover:text-td-forest transition-colors cursor-pointer">Organic Shea Butter</a>
+              <a href="#" class="block px-5 py-2.5 text-[13px] text-td-brown hover:bg-td-mint hover:text-td-forest transition-colors cursor-pointer">Organic Honey</a>
             </div>
           </div>
         </div>
-        <a href="#story" class="nl text-[12px] font-medium tracking-[.08em] uppercase">About Us</a>
-        <a href="#" class="nl text-[12px] font-medium tracking-[.08em] uppercase">Blog</a>
-        <a href="#" class="nl text-[12px] font-medium tracking-[.08em] uppercase">Soap Making</a>
+        <a href="#story" class="nl text-[12px] font-semibold tracking-[.06em] uppercase">About Us</a>
+        <a href="#" class="nl text-[12px] font-semibold tracking-[.06em] uppercase">Blog</a>
+        <a href="#" class="nl text-[12px] font-semibold tracking-[.06em] uppercase">Soap Making</a>
       </div>
-      <div class="flex items-center gap-5">
-        <a href="#" class="nl flex items-center gap-1.5 text-[12px] font-medium tracking-[.05em]">
-          <svg class="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-          <span class="hidden sm:inline">£0.00</span>
-        </a>
-        <button id="menuBtn" class="nl lg:hidden"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="flex items-center gap-4">
+        <a href="#" class="nl flex items-center gap-1.5 text-[12px] font-semibold cursor-pointer"><svg class="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg><span class="hidden sm:inline">£0.00</span></a>
+        <button id="menuBtn" class="nl lg:hidden cursor-pointer" aria-label="Menu"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       </div>
     </div>
   </nav>
 
   <!-- Mobile nav -->
   <div id="mobBg" class="fixed inset-0 bg-black/30 z-[60]" onclick="closeMob()"></div>
-  <div id="mob" class="fixed top-0 right-0 bottom-0 w-[300px] bg-brand-cream z-[70] overflow-y-auto shadow-2xl">
+  <div id="mob" class="fixed top-0 right-0 bottom-0 w-[300px] bg-td-cream z-[70] overflow-y-auto shadow-2xl">
     <div class="p-7">
-      <button onclick="closeMob()" class="mb-8 text-brand-bark hover:text-brand-green transition-colors"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+      <button onclick="closeMob()" class="mb-8 text-td-brown hover:text-td-forest transition-colors cursor-pointer" aria-label="Close menu"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
       <div class="space-y-0">
-        <a href="#" onclick="closeMob()" class="block py-3 border-b border-brand-linen text-sm font-medium text-brand-green tracking-[.05em]">Home</a>
-        <a href="#products" onclick="closeMob()" class="block py-3 border-b border-brand-linen text-sm text-brand-bark tracking-[.05em]">Handmade Soap</a>
-        <div class="py-3 border-b border-brand-linen">
-          <p class="text-sm text-brand-bark mb-2 tracking-[.05em]">Shop by Categories</p>
-          <div class="pl-4 space-y-2 mt-2">
-            <a href="#" class="block text-xs text-brand-muted hover:text-brand-green transition-colors">100% Handmade Soap</a>
-            <a href="#" class="block text-xs text-brand-muted hover:text-brand-green transition-colors">Face Oil</a>
-            <a href="#" class="block text-xs text-brand-muted hover:text-brand-green transition-colors">Luxury Skincare Set</a>
-            <a href="#" class="block text-xs text-brand-muted hover:text-brand-green transition-colors">Combo Set</a>
-            <a href="#" class="block text-xs text-brand-muted hover:text-brand-green transition-colors">Body Butter</a>
-            <a href="#" class="block text-xs text-brand-muted hover:text-brand-green transition-colors">Organic Shea Butter</a>
-            <a href="#" class="block text-xs text-brand-muted hover:text-brand-green transition-colors">Organic Honey</a>
-          </div>
-        </div>
-        <a href="#story" onclick="closeMob()" class="block py-3 border-b border-brand-linen text-sm text-brand-bark tracking-[.05em]">About Us</a>
-        <a href="#" class="block py-3 border-b border-brand-linen text-sm text-brand-bark tracking-[.05em]">Blog</a>
-        <a href="#" class="block py-3 border-b border-brand-linen text-sm text-brand-bark tracking-[.05em]">Soap Making</a>
+        <a href="#" onclick="closeMob()" class="block py-3.5 border-b border-td-linen text-sm font-semibold text-td-forest tracking-wide cursor-pointer">Home</a>
+        <a href="#products" onclick="closeMob()" class="block py-3.5 border-b border-td-linen text-sm text-td-brown tracking-wide cursor-pointer">Handmade Soap</a>
+        <a href="#story" onclick="closeMob()" class="block py-3.5 border-b border-td-linen text-sm text-td-brown tracking-wide cursor-pointer">About Us</a>
+        <a href="#" class="block py-3.5 border-b border-td-linen text-sm text-td-brown tracking-wide cursor-pointer">Blog</a>
+        <a href="#" class="block py-3.5 border-b border-td-linen text-sm text-td-brown tracking-wide cursor-pointer">Soap Making</a>
       </div>
     </div>
   </div>
 
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  HERO – Cinematic with parallax overlay       -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section class="relative min-h-[92vh] flex items-center overflow-hidden">
-    <div class="absolute inset-0">
-      <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/02/IMG_20231102_153956_778-scaled.jpg" alt="" class="kb w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-r from-brand-greenDeep/95 via-brand-green/80 to-brand-green/50"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-brand-greenDeep/70 via-transparent to-brand-greenDeep/20"></div>
-    </div>
-    <div class="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 w-full py-32">
-      <div class="max-w-3xl">
-        <p data-r class="text-brand-gold text-[11px] font-medium tracking-[.25em] uppercase mb-8">Handcrafted with Love &amp; Nature</p>
-        <h1 data-r class="font-serif fluid-hero text-white leading-[1.08] tracking-[-0.02em] mb-8 font-light" style="transition-delay:.12s">
-          Discover the Art<br/>of <em class="italic font-normal text-brand-goldLight">Self-Care</em>
-        </h1>
-        <p data-r class="text-white/60 text-lg sm:text-xl font-light leading-relaxed mb-12 max-w-lg tracking-[.01em]" style="transition-delay:.24s">
-          Luxurious handmade soaps crafted with love, nature, and quality in every bar.
-        </p>
-        <div data-r class="flex flex-wrap gap-4" style="transition-delay:.36s">
-          <a href="#products" class="group inline-flex items-center gap-3 bg-brand-gold hover:bg-brand-goldLight text-brand-greenDeep px-8 py-3.5 text-[13px] font-medium tracking-[.1em] uppercase transition-all duration-300">
-            Shop Now
-            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-          <a href="#story" class="inline-flex items-center gap-3 border border-white/25 hover:border-white/50 text-white px-8 py-3.5 text-[13px] font-medium tracking-[.1em] uppercase transition-all duration-300 hover:bg-white/5">
-            Our Story
-          </a>
-        </div>
-      </div>
-    </div>
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="relative overflow-hidden py-16 sm:py-20 lg:py-0 lg:min-h-[88vh] flex items-center">
+    <!-- Decorative blobs -->
+    <div class="deco-circle w-[500px] h-[500px] -top-40 -right-40 blob-1 bg-td-sageLight/30 blur-[2px]"></div>
+    <div class="deco-circle w-[300px] h-[300px] bottom-10 -left-20 blob-2 bg-td-peach/25 blur-[2px]"></div>
+    <div class="deco-circle w-[180px] h-[180px] top-1/3 right-1/4 blob-3 bg-td-goldWarm/15"></div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-      <span class="text-white/30 text-[10px] tracking-[.3em] uppercase">Scroll</span>
-      <div class="w-px h-8 bg-gradient-to-b from-white/30 to-transparent"></div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  TRUST STRIP                                  -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section class="border-b border-brand-linen">
-    <div class="max-w-[1440px] mx-auto px-6 sm:px-10 py-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-      <div class="flex items-center gap-3 justify-center">
-        <svg class="icon-float w-7 h-7 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-1.5-1.5-6-6.2-6-10A6 6 0 0118 11c0 3.8-4.5 8.5-6 10z"/><path stroke-linecap="round" d="M12 21V11m0 0c-2-2.5-4-3-5-3m5 3c2-2.5 4-3 5-3"/></svg>
-        <div><p class="text-brand-bark text-xs font-medium tracking-[.05em]">100% Organic</p><p class="text-brand-muted text-[10px] mt-0.5">Chemical-free care</p></div>
-      </div>
-      <div class="flex items-center gap-3 justify-center">
-        <svg class="icon-float w-7 h-7 text-brand-green" style="animation-delay:.5s" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22V12m0 0c0-3 2-5.5 5-7m-5 7c0-3-2-5.5-5-7"/><path stroke-linecap="round" d="M7 2.5S9 5 12 5s5-2.5 5-2.5"/><circle cx="12" cy="12" r="2.5"/></svg>
-        <div><p class="text-brand-bark text-xs font-medium tracking-[.05em]">Plant-Based</p><p class="text-brand-muted text-[10px] mt-0.5">Nature's finest oils</p></div>
-      </div>
-      <div class="flex items-center gap-3 justify-center">
-        <svg class="icon-float w-7 h-7 text-brand-green" style="animation-delay:1s" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h3l2-4 3 8 2-4h3m-5.5 5.5l1.5 1.5 3-3M7.5 17.5L6 19l-3-3"/></svg>
-        <div><p class="text-brand-bark text-xs font-medium tracking-[.05em]">Eco-Friendly</p><p class="text-brand-muted text-[10px] mt-0.5">Kind to the planet</p></div>
-      </div>
-      <div class="flex items-center gap-3 justify-center">
-        <div class="icon-float w-8 h-8 flex items-center justify-center" style="animation-delay:1.5s">
-          <svg class="w-6 h-6 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
-        </div>
-        <div><p class="text-brand-bark text-xs font-medium tracking-[.05em]">Cruelty-Free</p><p class="text-brand-muted text-[10px] mt-0.5">Vegan friendly</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  TRENDING PRODUCTS                            -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section id="products" class="py-24 sm:py-32">
-    <div class="max-w-[1440px] mx-auto px-6 sm:px-10">
-      <div data-r class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
-        <div>
-          <p class="text-brand-gold text-[11px] font-medium tracking-[.25em] uppercase mb-3">Bestsellers</p>
-          <h2 class="font-serif fluid-h2 text-brand-green tracking-[-0.02em] font-light">Trending Products</h2>
-        </div>
-        <a href="#" class="group flex items-center gap-2 text-brand-muted text-[13px] tracking-[.05em] hover:text-brand-green transition-colors">
-          View all products
-          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-      </div>
-
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-7">
-
-        <!-- Product 1 -->
-        <div data-r class="pc group" style="transition-delay:.06s">
-          <div class="relative aspect-[3/4] overflow-hidden bg-brand-linen rounded-sm">
-            <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/12/IMG_20230328_131752814-scaled.jpg" alt="Organic Raw Shea Butter 50g" class="pc-img1 absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <img src="https://www.triplediamondmus.com/wp-content/uploads/2020/07/MG_0514.jpg" alt="Shea Butter detail" class="pc-img2 absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <div class="absolute top-4 left-4"><span class="bg-brand-green text-white text-[10px] font-medium tracking-[.12em] uppercase px-3 py-1.5">Sale</span></div>
-          </div>
-          <div class="pt-5 pb-2">
-            <p class="text-brand-muted text-[10px] tracking-[.18em] uppercase mb-2">Organic Shea Butter</p>
-            <h3 class="font-serif text-brand-bark text-base sm:text-lg leading-snug mb-2">100% Organic Raw Shea Butter 50g</h3>
-            <div class="flex items-center gap-1 mb-3">
-              <div class="flex gap-px"><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-              <span class="text-brand-muted text-[10px]">(5.0)</span>
-            </div>
-            <div class="flex items-baseline gap-2 mb-4">
-              <span class="text-brand-subtle text-xs line-through">£2.55</span>
-              <span class="font-serif text-brand-green text-xl">£1.53</span>
-            </div>
-            <button class="pc-btn w-full py-3 border border-brand-green text-brand-green text-[11px] font-medium tracking-[.12em] uppercase">Add to Basket</button>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div data-r class="pc group" style="transition-delay:.12s">
-          <div class="relative aspect-[3/4] overflow-hidden bg-brand-linen rounded-sm">
-            <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/02/IMG_20230514_161600_288-scaled.jpg" alt="Lavender Sunflower Soap" class="pc-img1 absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/02/lavender-set-wrapped-scaled.jpg" alt="Lavender soap wrapped" class="pc-img2 absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <div class="absolute top-4 left-4"><span class="bg-brand-green text-white text-[10px] font-medium tracking-[.12em] uppercase px-3 py-1.5">Sale</span></div>
-          </div>
-          <div class="pt-5 pb-2">
-            <p class="text-brand-muted text-[10px] tracking-[.18em] uppercase mb-2">100% Handmade Soap</p>
-            <h3 class="font-serif text-brand-bark text-base sm:text-lg leading-snug mb-2">3 Thick Bars Lavender &amp; Sunflower Soap</h3>
-            <div class="flex items-center gap-1 mb-3">
-              <div class="flex gap-px"><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-              <span class="text-brand-muted text-[10px]">(5.0)</span>
-            </div>
-            <div class="flex items-baseline gap-2 mb-4">
-              <span class="text-brand-subtle text-xs line-through">£19.00</span>
-              <span class="font-serif text-brand-green text-xl">£11.40</span>
-            </div>
-            <button class="pc-btn w-full py-3 border border-brand-green text-brand-green text-[11px] font-medium tracking-[.12em] uppercase">Add to Basket</button>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div data-r class="pc group" style="transition-delay:.18s">
-          <div class="relative aspect-[3/4] overflow-hidden bg-brand-linen rounded-sm">
-            <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/12/IMG-20230717-WA0003-300x300.jpg" alt="7 Boxes Handmade Soap" class="pc-img1 absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/12/IMG_20240321_124900_704-scaled.jpg" alt="Handmade soap detail" class="pc-img2 absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <div class="absolute top-4 left-4"><span class="bg-brand-green text-white text-[10px] font-medium tracking-[.12em] uppercase px-3 py-1.5">Sale</span></div>
-          </div>
-          <div class="pt-5 pb-2">
-            <p class="text-brand-muted text-[10px] tracking-[.18em] uppercase mb-2">100% Handmade Soap</p>
-            <h3 class="font-serif text-brand-bark text-base sm:text-lg leading-snug mb-2">7 Boxes of Lovely Bars of Handmade Soap</h3>
-            <div class="flex items-center gap-1 mb-3">
-              <div class="flex gap-px"><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-              <span class="text-brand-muted text-[10px]">(5.0)</span>
-            </div>
-            <div class="flex items-baseline gap-2 mb-4">
-              <span class="text-brand-subtle text-xs line-through">£40.00</span>
-              <span class="font-serif text-brand-green text-xl">£24.00</span>
-            </div>
-            <button class="pc-btn w-full py-3 border border-brand-green text-brand-green text-[11px] font-medium tracking-[.12em] uppercase">Add to Basket</button>
-          </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div data-r class="pc group" style="transition-delay:.24s">
-          <div class="relative aspect-[3/4] overflow-hidden bg-brand-linen rounded-sm">
-            <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/02/IMG-20230716-WA0002-300x300.jpg" alt="Gift Set 7 Bars" class="pc-img1 absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/02/IMG_20230821_190706_100-scaled.jpg" alt="Soap bars detail" class="pc-img2 absolute inset-0 w-full h-full object-cover" loading="lazy" />
-            <div class="absolute top-4 left-4"><span class="bg-brand-green text-white text-[10px] font-medium tracking-[.12em] uppercase px-3 py-1.5">Sale</span></div>
-          </div>
-          <div class="pt-5 pb-2">
-            <p class="text-brand-muted text-[10px] tracking-[.18em] uppercase mb-2">100% Handmade Soap</p>
-            <h3 class="font-serif text-brand-bark text-base sm:text-lg leading-snug mb-2">Luxurious Pack of 7 Biggest Bars — Gift Set</h3>
-            <div class="flex items-center gap-1 mb-3">
-              <div class="flex gap-px"><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-              <span class="text-brand-muted text-[10px]">(5.0)</span>
-            </div>
-            <div class="flex items-baseline gap-2 mb-4">
-              <span class="text-brand-subtle text-xs line-through">£53.00</span>
-              <span class="font-serif text-brand-green text-xl">£31.80</span>
-            </div>
-            <button class="pc-btn w-full py-3 border border-brand-green text-brand-green text-[11px] font-medium tracking-[.12em] uppercase">Add to Basket</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  PARALLAX EDITORIAL BREAK                     -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section class="parallax-bg relative min-h-[55vh] flex items-center justify-center" style="background-image:url('https://www.triplediamondmus.com/wp-content/uploads/2022/02/IMG_20230821_184934_543-scaled.jpg')">
-    <div class="absolute inset-0 bg-brand-greenDeep/70"></div>
-    <div class="relative z-10 text-center px-6 max-w-2xl" data-r>
-      <p class="text-brand-gold text-[11px] tracking-[.25em] uppercase mb-6">Our Philosophy</p>
-      <p class="font-serif text-white text-2xl sm:text-3xl md:text-4xl leading-[1.3] font-light italic">
-        "Nature holds the secret to radiant beauty. We simply craft it into every bar."
-      </p>
-      <div class="w-10 h-px bg-brand-gold/50 mx-auto mt-8"></div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  OUR STORY – Editorial Split                  -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section id="story" class="bg-brand-green">
-    <div class="grid lg:grid-cols-2 min-h-[650px]">
-      <!-- Image -->
-      <div class="relative h-[450px] lg:h-auto overflow-hidden">
-        <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/12/IMG_20240306_183854_410-scaled.jpg" alt="Triple Diamond artisanal soap collection" class="w-full h-full object-cover" loading="lazy" />
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent lg:to-brand-green/30"></div>
-      </div>
+    <div class="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
       <!-- Text -->
-      <div class="flex items-center px-8 sm:px-14 lg:px-20 xl:px-28 py-20 lg:py-28">
-        <div data-r class="max-w-lg">
-          <p class="text-brand-gold text-[11px] font-medium tracking-[.25em] uppercase mb-5">Est. 2020 — United Kingdom &amp; Nigeria</p>
-          <h2 class="font-serif fluid-h2 text-white tracking-[-0.02em] font-light leading-[1.12] mb-8">Our Story</h2>
-          <div class="w-10 h-px bg-brand-gold/40 mb-8"></div>
-          <p class="text-white/65 leading-[1.85] mb-6 text-[15px]">
-            At Triple Diamond, we believe nature holds the secret to radiant beauty and wellness. Inspired by the rich traditions of organic skincare, we craft 100% handmade soaps, organic shea butter, and other natural products with love and care.
-          </p>
-          <p class="text-white/65 leading-[1.85] mb-12 text-[15px]">
-            Rooted in the United Kingdom and Nigeria, we blend local expertise with premium, plant-based ingredients to deliver gentle, skin-nourishing solutions that are vegan-friendly and free from chemicals.
-          </p>
-          <div class="flex items-center gap-6">
-            <img src="https://triplediamondmus.com/wp-content/uploads/2024/12/best-regards.gif" alt="" class="w-16 h-16 rounded-full object-contain bg-white/10 p-2" loading="lazy" />
-            <div>
-              <p class="font-hand text-brand-goldLight text-2xl">Tinu Odunuga</p>
-              <p class="text-white/40 text-[11px] tracking-[.12em] uppercase mt-1">Director / CEO</p>
-            </div>
-          </div>
+      <div class="order-2 lg:order-1">
+        <div data-r class="inline-flex items-center gap-2 bg-td-emerald/10 border border-td-emerald/20 px-4 py-1.5 rounded-full mb-7">
+          <span class="w-2 h-2 rounded-full bg-td-emerald animate-pulse"></span>
+          <span class="text-td-emerald text-[11px] font-semibold tracking-[.15em] uppercase">Handcrafted with Love</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  WHY CHOOSE US                                -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section class="py-24 sm:py-32 bg-brand-sage/40">
-    <div class="max-w-[1440px] mx-auto px-6 sm:px-10">
-      <div data-r class="text-center mb-16">
-        <p class="text-brand-gold text-[11px] font-medium tracking-[.25em] uppercase mb-3">Our Promise</p>
-        <h2 class="font-serif fluid-h2 text-brand-green tracking-[-0.02em] font-light">Why People Choose Us</h2>
-      </div>
-      <div class="grid sm:grid-cols-3 gap-8 lg:gap-14">
-        <div data-r class="text-center group" style="transition-delay:.06s">
-          <div class="w-20 h-20 mx-auto mb-7 rounded-full bg-brand-cream flex items-center justify-center border border-brand-linen group-hover:border-brand-gold/30 transition-colors">
-            <svg class="w-9 h-9 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-1.5-1.5-6-6.2-6-10A6 6 0 0118 11c0 3.8-4.5 8.5-6 10z"/><path stroke-linecap="round" d="M12 21V11m0 0c-2-2.5-4-3-5-3m5 3c2-2.5 4-3 5-3"/></svg>
-          </div>
-          <h3 class="font-serif text-brand-green text-xl sm:text-2xl mb-3 font-light">100% Organic</h3>
-          <p class="text-brand-muted text-sm leading-relaxed max-w-xs mx-auto">Pure, chemical-free ingredients ensuring gentle, nourishing care for every skin type.</p>
-        </div>
-        <div data-r class="text-center group" style="transition-delay:.12s">
-          <div class="w-20 h-20 mx-auto mb-7 rounded-full bg-brand-cream flex items-center justify-center border border-brand-linen group-hover:border-brand-gold/30 transition-colors">
-            <svg class="w-9 h-9 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22V12m0 0c0-3 2-5.5 5-7m-5 7c0-3-2-5.5-5-7"/><path stroke-linecap="round" d="M7 2.5S9 5 12 5s5-2.5 5-2.5"/><circle cx="12" cy="12" r="2.5"/></svg>
-          </div>
-          <h3 class="font-serif text-brand-green text-xl sm:text-2xl mb-3 font-light">Nature's Best</h3>
-          <p class="text-brand-muted text-sm leading-relaxed max-w-xs mx-auto">Plant-based oils and nutrients to nourish, protect, and rejuvenate your skin naturally.</p>
-        </div>
-        <div data-r class="text-center group" style="transition-delay:.18s">
-          <div class="w-20 h-20 mx-auto mb-7 rounded-full bg-brand-cream flex items-center justify-center border border-brand-linen group-hover:border-brand-gold/30 transition-colors">
-            <svg class="w-9 h-9 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c-1.66 0-3-4.03-3-9s1.34-9 3-9m0 18c1.66 0 3-4.03 3-9s-1.34-9-3-9m-9 9a9 9 0 019-9"/></svg>
-          </div>
-          <h3 class="font-serif text-brand-green text-xl sm:text-2xl mb-3 font-light">Eco-Friendly</h3>
-          <p class="text-brand-muted text-sm leading-relaxed max-w-xs mx-auto">Vegan-friendly, cruelty-free products that are kind to the planet and your conscience.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  CUSTOMER REVIEWS                             -->
-  <!-- ═════════════════════════════════════════════ -->
-  <section class="py-24 sm:py-32 bg-brand-cream">
-    <div class="max-w-[1440px] mx-auto px-6 sm:px-10">
-      <div data-r class="text-center mb-16">
-        <p class="text-brand-gold text-[11px] font-medium tracking-[.25em] uppercase mb-3">Testimonials</p>
-        <h2 class="font-serif fluid-h2 text-brand-green tracking-[-0.02em] font-light">Customer Reviews</h2>
-      </div>
-
-      <div class="rv-track flex gap-6 overflow-x-auto pb-4 -mx-6 px-6 snap-x snap-mandatory lg:grid lg:grid-cols-3 lg:mx-0 lg:px-0 lg:overflow-visible lg:pb-0">
-
-        <div data-r class="snap-start shrink-0 w-[82%] sm:w-[55%] lg:w-auto relative p-8 sm:p-9 bg-white border border-brand-linen rounded-sm" style="transition-delay:.06s">
-          <span class="quote-mark">&ldquo;</span>
-          <div class="relative">
-            <div class="flex gap-0.5 mb-5 pt-6"><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-            <p class="text-brand-bark/80 text-sm italic leading-[1.8] mb-7">I enjoyed using the lavender and sunflower handmade soap... The smell is heaven. My skin feels so soft and moisturised after every wash.</p>
-            <div class="pt-5 border-t border-brand-linen">
-              <p class="font-serif text-brand-green text-base">Grace</p>
-              <p class="text-brand-muted text-[11px] mt-0.5 tracking-[.05em]">First Time Customer</p>
-            </div>
-          </div>
-        </div>
-
-        <div data-r class="snap-start shrink-0 w-[82%] sm:w-[55%] lg:w-auto relative p-8 sm:p-9 bg-white border border-brand-linen rounded-sm" style="transition-delay:.12s">
-          <span class="quote-mark">&ldquo;</span>
-          <div class="relative">
-            <div class="flex gap-0.5 mb-5 pt-6"><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-            <p class="text-brand-bark/80 text-sm italic leading-[1.8] mb-7">The organic shea butter cleared my stretch marks after giving birth. I can't believe how smooth my skin looks now. Absolutely incredible product!</p>
-            <div class="pt-5 border-t border-brand-linen">
-              <p class="font-serif text-brand-green text-base">Folly</p>
-              <p class="text-brand-muted text-[11px] mt-0.5 tracking-[.05em]">Shopper</p>
-            </div>
-          </div>
-        </div>
-
-        <div data-r class="snap-start shrink-0 w-[82%] sm:w-[55%] lg:w-auto relative p-8 sm:p-9 bg-white border border-brand-linen rounded-sm" style="transition-delay:.18s">
-          <span class="quote-mark">&ldquo;</span>
-          <div class="relative">
-            <div class="flex gap-0.5 mb-5 pt-6"><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-            <p class="text-brand-bark/80 text-sm italic leading-[1.8] mb-7">My sensitive skin allows me to use bars without fragrance. Triple Diamond's natural soap is the only one that doesn't cause any reactions. A lifesaver!</p>
-            <div class="pt-5 border-t border-brand-linen">
-              <p class="font-serif text-brand-green text-base">Rebecca</p>
-              <p class="text-brand-muted text-[11px] mt-0.5 tracking-[.05em]">Fashion Designer</p>
-            </div>
-          </div>
-        </div>
-
-        <div data-r class="snap-start shrink-0 w-[82%] sm:w-[55%] lg:w-auto relative p-8 sm:p-9 bg-white border border-brand-linen rounded-sm" style="transition-delay:.24s">
-          <span class="quote-mark">&ldquo;</span>
-          <div class="relative">
-            <div class="flex gap-0.5 mb-5 pt-6"><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-            <p class="text-brand-bark/80 text-sm italic leading-[1.8] mb-7">I highly recommend shea natural soap for people with sensitive skin. The quality is outstanding, and you can tell it's made with genuine care.</p>
-            <div class="pt-5 border-t border-brand-linen">
-              <p class="font-serif text-brand-green text-base">Mafoso</p>
-              <p class="text-brand-muted text-[11px] mt-0.5 tracking-[.05em]">Doctor</p>
-            </div>
-          </div>
-        </div>
-
-        <div data-r class="snap-start shrink-0 w-[82%] sm:w-[55%] lg:w-auto relative p-8 sm:p-9 bg-white border border-brand-linen rounded-sm" style="transition-delay:.3s">
-          <span class="quote-mark">&ldquo;</span>
-          <div class="relative">
-            <div class="flex gap-0.5 mb-5 pt-6"><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
-            <p class="text-brand-bark/80 text-sm italic leading-[1.8] mb-7">My favourite is the lovely green and clear no fragrance soap. It leaves my skin feeling fresh and clean without any irritation. Will keep reordering!</p>
-            <div class="pt-5 border-t border-brand-linen">
-              <p class="font-serif text-brand-green text-base">Iyabo</p>
-              <p class="text-brand-muted text-[11px] mt-0.5 tracking-[.05em]">Accountant</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  FOOTER                                       -->
-  <!-- ═════════════════════════════════════════════ -->
-  <footer class="bg-brand-green text-white/65">
-    <div class="max-w-[1440px] mx-auto px-6 sm:px-10">
-
-      <!-- Service badges -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 py-10 border-b border-white/10">
-        <div class="text-center"><p class="text-white/90 text-xs font-medium tracking-[.08em] mb-1">Secure Checkout</p><p class="text-white/40 text-[11px]">SSL encrypted</p></div>
-        <div class="text-center"><p class="text-white/90 text-xs font-medium tracking-[.08em] mb-1">Free UK Shipping</p><p class="text-white/40 text-[11px]">Orders over £30</p></div>
-        <div class="text-center"><p class="text-white/90 text-xs font-medium tracking-[.08em] mb-1">Handmade Fresh</p><p class="text-white/40 text-[11px]">Small batch crafted</p></div>
-        <div class="text-center"><p class="text-white/90 text-xs font-medium tracking-[.08em] mb-1">Gift Wrapping</p><p class="text-white/40 text-[11px]">Available on request</p></div>
-      </div>
-
-      <!-- Main footer -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 py-16">
-        <div class="lg:col-span-1">
-          <img src="https://www.triplediamondmus.com/wp-content/uploads/2024/12/Triple-Diamond-handmade-logo.png" alt="Triple Diamond" class="h-10 brightness-0 invert opacity-60 mb-5" />
-          <p class="text-sm leading-relaxed text-white/50 max-w-[260px]">Crafted with love, nature, and quality. Organic handmade soaps for radiant beauty and wellness.</p>
-        </div>
-        <div>
-          <p class="text-white/90 text-[11px] font-medium tracking-[.18em] uppercase mb-5">Shop</p>
-          <div class="space-y-2.5">
-            <a href="#" class="block text-sm text-white/50 hover:text-brand-gold transition-colors">Handmade Soap</a>
-            <a href="#" class="block text-sm text-white/50 hover:text-brand-gold transition-colors">Organic Shea Butter</a>
-            <a href="#" class="block text-sm text-white/50 hover:text-brand-gold transition-colors">Face Oil</a>
-            <a href="#" class="block text-sm text-white/50 hover:text-brand-gold transition-colors">Gift Sets</a>
-          </div>
-        </div>
-        <div>
-          <p class="text-white/90 text-[11px] font-medium tracking-[.18em] uppercase mb-5">Company</p>
-          <div class="space-y-2.5">
-            <a href="#story" class="block text-sm text-white/50 hover:text-brand-gold transition-colors">About Us</a>
-            <a href="#" class="block text-sm text-white/50 hover:text-brand-gold transition-colors">Contact Us</a>
-            <a href="#" class="block text-sm text-white/50 hover:text-brand-gold transition-colors">Privacy Policy</a>
-            <a href="#" class="block text-sm text-white/50 hover:text-brand-gold transition-colors">Refund Policy</a>
-            <a href="#" class="block text-sm text-white/50 hover:text-brand-gold transition-colors">Shipping Policy</a>
-          </div>
-        </div>
-        <div>
-          <p class="text-white/90 text-[11px] font-medium tracking-[.18em] uppercase mb-5">Stay Connected</p>
-          <p class="text-sm text-white/50 leading-relaxed mb-5">Join our community for exclusive offers and skincare tips.</p>
-          <div class="flex gap-0">
-            <input type="email" placeholder="your@email.com" class="flex-1 bg-white/8 border border-white/15 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-brand-gold/50 transition-colors" />
-            <button class="bg-brand-gold text-brand-greenDeep px-5 py-2.5 text-xs font-medium tracking-[.1em] uppercase hover:bg-brand-goldLight transition-colors">Join</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom -->
-      <div class="py-7 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p class="text-[11px] text-white/30">&copy; 2026 Triple Diamond Multi Service. All rights reserved.</p>
-        <p class="text-[11px] text-white/20 flex items-center gap-1.5">
-          <span class="w-1 h-1 rounded-full bg-brand-gold/40"></span>
-          Handmade with love in the UK &amp; Nigeria
+        <h1 data-r class="font-serif fl-hero text-td-bark leading-[1.06] tracking-[-0.02em] mb-6" style="transition-delay:.1s">
+          Discover the<br/>Art of <em class="italic grad-text">Self-Care</em>
+        </h1>
+        <p data-r class="text-td-brownLight text-lg leading-relaxed mb-10 max-w-md" style="transition-delay:.2s">
+          Luxurious handmade soaps crafted with love, nature, and quality in every bar. 100% organic, vegan-friendly.
         </p>
+        <div data-r class="flex flex-wrap gap-4" style="transition-delay:.3s">
+          <a href="#products" class="cta-glow inline-flex items-center gap-2.5 bg-td-gold hover:bg-td-goldLight text-white px-8 py-4 text-[13px] font-semibold tracking-[.08em] uppercase rounded-full cursor-pointer">
+            Shop Now
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="#story" class="inline-flex items-center gap-2.5 bg-td-forest hover:bg-td-emerald text-white px-8 py-4 text-[13px] font-semibold tracking-[.08em] uppercase rounded-full transition-colors cursor-pointer">Our Story</a>
+        </div>
+        <!-- Mini trust -->
+        <div data-r class="flex items-center gap-6 mt-10 pt-8 border-t border-td-linen" style="transition-delay:.4s">
+          <div class="flex items-center gap-1.5"><svg class="w-4 h-4 text-td-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="text-xs text-td-brown font-medium">Organic</span></div>
+          <div class="flex items-center gap-1.5"><svg class="w-4 h-4 text-td-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="text-xs text-td-brown font-medium">Vegan</span></div>
+          <div class="flex items-center gap-1.5"><svg class="w-4 h-4 text-td-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="text-xs text-td-brown font-medium">Cruelty-Free</span></div>
+        </div>
       </div>
+      <!-- Image collage -->
+      <div data-r class="order-1 lg:order-2 relative" style="transition-delay:.15s">
+        <div class="relative mx-auto max-w-[480px] lg:max-w-none">
+          <div class="blob-1 overflow-hidden shadow-2xl aspect-[4/5]">
+            <img src="https://www.triplediamondmus.com/wp-content/uploads/2022/02/IMG_20231102_153956_778-scaled.jpg" alt="Triple Diamond handmade soaps" class="w-full h-full object-cover" />
+          </div>
+          <!-- Floating card -->
+          <div class="hero-float absolute -bottom-4 -left-4 sm:-left-8 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 border border-td-sage/20">
+            <div class="w-12 h-12 rounded-full overflow-hidden shrink-0"><img src="https://www.triplediamondmus.com/wp-content/uploads/2022/12/IMG_20230328_131752814-scaled.jpg" alt="" class="w-full h-full object-cover" /></div>
+            <div>
+              <div class="flex gap-px mb-0.5"><svg class="w-3 h-3 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3 h-3 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+              <p class="text-[11px] font-semibold text-td-bark">500+ Happy Customers</p>
+            </div>
+          </div>
+          <!-- Floating badge -->
+          <div class="hero-float absolute -top-3 -right-3 sm:-right-6 bg-td-forest text-white rounded-2xl shadow-xl px-4 py-3 text-center" style="animation-delay:1s">
+            <p class="text-2xl font-bold font-serif">40%</p>
+            <p class="text-[10px] tracking-wider uppercase opacity-80">Off Sale</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ TRUST BAR ═══════════ -->
+  <section class="bg-gradient-to-r from-td-forest via-td-emerald to-td-forest py-5">
+    <div class="max-w-[1400px] mx-auto px-5 sm:px-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="flex items-center gap-2.5 justify-center">
+        <svg class="trust-icon w-6 h-6 text-td-sageLight" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+        <span class="text-white/90 text-xs font-medium tracking-wide">100% Organic</span>
+      </div>
+      <div class="flex items-center gap-2.5 justify-center">
+        <svg class="trust-icon w-6 h-6 text-td-sageLight" style="animation-delay:.8s" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg>
+        <span class="text-white/90 text-xs font-medium tracking-wide">Plant-Based</span>
+      </div>
+      <div class="flex items-center gap-2.5 justify-center">
+        <svg class="trust-icon w-6 h-6 text-td-sageLight" style="animation-delay:1.6s" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 00-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 01-5.276 3.67"/></svg>
+        <span class="text-white/90 text-xs font-medium tracking-wide">Eco-Friendly</span>
+      </div>
+      <div class="flex items-center gap-2.5 justify-center">
+        <svg class="trust-icon w-6 h-6 text-td-sageLight" style="animation-delay:2.4s" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+        <span class="text-white/90 text-xs font-medium tracking-wide">Cruelty-Free</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ TRENDING PRODUCTS ═══════════ -->
+  <section id="products" class="py-20 sm:py-28 relative">
+    <div class="deco-circle w-[250px] h-[250px] -top-20 -left-20 blob-2 bg-td-mint/50"></div>
+    <div class="max-w-[1400px] mx-auto px-5 sm:px-8 relative z-10">
+      <div data-r class="text-center mb-14">
+        <p class="text-td-emerald text-[11px] font-semibold tracking-[.25em] uppercase mb-3">Shop Our Bestsellers</p>
+        <h2 class="font-serif fl-h2 text-td-bark tracking-[-0.02em]">Trending Products</h2>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+
+        <!-- Card 1 -->
+        <div data-r class="pc bg-white overflow-hidden" style="transition-delay:.06s">
+          <div class="relative aspect-square overflow-hidden"><img src="https://www.triplediamondmus.com/wp-content/uploads/2022/12/IMG_20230328_131752814-scaled.jpg" alt="Organic Raw Shea Butter 50g" class="pc-img w-full h-full object-cover" loading="lazy" /><span class="absolute top-3 left-3 bg-gradient-to-r from-td-emerald to-td-forest text-white text-[10px] font-bold tracking-[.1em] uppercase px-3 py-1.5 rounded-full shadow">40% Off</span></div>
+          <div class="p-4 sm:p-5">
+            <p class="text-td-brownLight text-[10px] tracking-[.15em] uppercase mb-1.5 font-medium">Organic Shea Butter</p>
+            <h3 class="font-serif text-td-bark text-sm sm:text-base leading-snug mb-2">100% Organic Raw Shea Butter 50g</h3>
+            <div class="flex gap-px mb-2"><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+            <div class="flex items-baseline gap-2 mb-4"><span class="text-td-brownLight text-xs line-through">£2.55</span><span class="font-serif text-td-forest text-xl font-semibold">£1.53</span></div>
+            <button class="pc-btn w-full py-3 bg-td-forest/5 border border-td-forest/20 text-td-forest text-[11px] font-semibold tracking-[.1em] uppercase rounded-full">Add to Basket</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div data-r class="pc bg-white overflow-hidden" style="transition-delay:.12s">
+          <div class="relative aspect-square overflow-hidden"><img src="https://www.triplediamondmus.com/wp-content/uploads/2022/02/IMG_20230514_161600_288-scaled.jpg" alt="Lavender Sunflower Soap" class="pc-img w-full h-full object-cover" loading="lazy" /><span class="absolute top-3 left-3 bg-gradient-to-r from-td-emerald to-td-forest text-white text-[10px] font-bold tracking-[.1em] uppercase px-3 py-1.5 rounded-full shadow">40% Off</span></div>
+          <div class="p-4 sm:p-5">
+            <p class="text-td-brownLight text-[10px] tracking-[.15em] uppercase mb-1.5 font-medium">100% Handmade Soap</p>
+            <h3 class="font-serif text-td-bark text-sm sm:text-base leading-snug mb-2">3 Thick Bars Lavender &amp; Sunflower Soap</h3>
+            <div class="flex gap-px mb-2"><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+            <div class="flex items-baseline gap-2 mb-4"><span class="text-td-brownLight text-xs line-through">£19.00</span><span class="font-serif text-td-forest text-xl font-semibold">£11.40</span></div>
+            <button class="pc-btn w-full py-3 bg-td-forest/5 border border-td-forest/20 text-td-forest text-[11px] font-semibold tracking-[.1em] uppercase rounded-full">Add to Basket</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div data-r class="pc bg-white overflow-hidden" style="transition-delay:.18s">
+          <div class="relative aspect-square overflow-hidden"><img src="https://www.triplediamondmus.com/wp-content/uploads/2022/12/IMG-20230717-WA0003-300x300.jpg" alt="7 Boxes Handmade Soap" class="pc-img w-full h-full object-cover" loading="lazy" /><span class="absolute top-3 left-3 bg-gradient-to-r from-td-emerald to-td-forest text-white text-[10px] font-bold tracking-[.1em] uppercase px-3 py-1.5 rounded-full shadow">40% Off</span></div>
+          <div class="p-4 sm:p-5">
+            <p class="text-td-brownLight text-[10px] tracking-[.15em] uppercase mb-1.5 font-medium">100% Handmade Soap</p>
+            <h3 class="font-serif text-td-bark text-sm sm:text-base leading-snug mb-2">7 Boxes of Lovely Bars of Handmade Soap</h3>
+            <div class="flex gap-px mb-2"><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+            <div class="flex items-baseline gap-2 mb-4"><span class="text-td-brownLight text-xs line-through">£40.00</span><span class="font-serif text-td-forest text-xl font-semibold">£24.00</span></div>
+            <button class="pc-btn w-full py-3 bg-td-forest/5 border border-td-forest/20 text-td-forest text-[11px] font-semibold tracking-[.1em] uppercase rounded-full">Add to Basket</button>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div data-r class="pc bg-white overflow-hidden" style="transition-delay:.24s">
+          <div class="relative aspect-square overflow-hidden"><img src="https://www.triplediamondmus.com/wp-content/uploads/2022/02/IMG-20230716-WA0002-300x300.jpg" alt="Gift Set 7 Bars" class="pc-img w-full h-full object-cover" loading="lazy" /><span class="absolute top-3 left-3 bg-gradient-to-r from-td-emerald to-td-forest text-white text-[10px] font-bold tracking-[.1em] uppercase px-3 py-1.5 rounded-full shadow">40% Off</span></div>
+          <div class="p-4 sm:p-5">
+            <p class="text-td-brownLight text-[10px] tracking-[.15em] uppercase mb-1.5 font-medium">100% Handmade Soap</p>
+            <h3 class="font-serif text-td-bark text-sm sm:text-base leading-snug mb-2">Luxurious Pack of 7 Biggest Bars — Gift Set</h3>
+            <div class="flex gap-px mb-2"><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-3.5 h-3.5 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+            <div class="flex items-baseline gap-2 mb-4"><span class="text-td-brownLight text-xs line-through">£53.00</span><span class="font-serif text-td-forest text-xl font-semibold">£31.80</span></div>
+            <button class="pc-btn w-full py-3 bg-td-forest/5 border border-td-forest/20 text-td-forest text-[11px] font-semibold tracking-[.1em] uppercase rounded-full">Add to Basket</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ OUR STORY ═══════════ -->
+  <section id="story" class="relative overflow-hidden">
+    <div class="grid lg:grid-cols-2">
+      <div class="relative h-[450px] lg:h-auto overflow-hidden"><img src="https://www.triplediamondmus.com/wp-content/uploads/2022/12/IMG_20240306_183854_410-scaled.jpg" alt="Triple Diamond products" class="w-full h-full object-cover" loading="lazy" /></div>
+      <div class="bg-td-forest flex items-center px-8 sm:px-14 lg:px-20 py-20">
+        <div data-r class="max-w-lg">
+          <p class="text-td-goldWarm text-[11px] font-semibold tracking-[.25em] uppercase mb-5">Est. 2020 — UK &amp; Nigeria</p>
+          <h2 class="font-serif fl-h2 text-white leading-[1.12] mb-8">Our Story</h2>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-td-gold to-td-goldWarm rounded mb-8"></div>
+          <p class="text-white/70 leading-[1.85] mb-5 text-[15px]">At Triple Diamond, we believe nature holds the secret to radiant beauty and wellness. We craft 100% handmade soaps, organic shea butter, and natural skincare with love and care.</p>
+          <p class="text-white/70 leading-[1.85] mb-10 text-[15px]">Rooted in the United Kingdom and Nigeria, we blend local expertise with premium, plant-based ingredients — vegan-friendly and free from chemicals.</p>
+          <div class="flex items-center gap-5">
+            <img src="https://triplediamondmus.com/wp-content/uploads/2024/12/best-regards.gif" alt="" class="w-14 h-14 rounded-full object-contain bg-white/10 p-1.5" loading="lazy" />
+            <div><p class="font-hand text-td-goldWarm text-2xl">Tinu Odunuga</p><p class="text-white/40 text-[11px] tracking-[.12em] uppercase mt-0.5">Director / CEO</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ WHY CHOOSE US ═══════════ -->
+  <section class="py-20 sm:py-28 bg-td-mint/30 relative">
+    <div class="deco-circle w-[200px] h-[200px] top-10 right-10 blob-1 bg-td-peach/20"></div>
+    <div class="max-w-[1400px] mx-auto px-5 sm:px-8 relative z-10">
+      <div data-r class="text-center mb-14">
+        <p class="text-td-emerald text-[11px] font-semibold tracking-[.25em] uppercase mb-3">Our Promise</p>
+        <h2 class="font-serif fl-h2 text-td-bark tracking-[-0.02em]">Why People Choose Us</h2>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-6 lg:gap-10">
+        <div data-r class="text-center bg-white p-8 sm:p-10 rounded-3xl shadow-sm hover:shadow-lg transition-shadow group" style="transition-delay:.06s">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-td-emerald/10 to-td-sage/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-td-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <h3 class="font-serif text-td-bark text-xl sm:text-2xl mb-3">100% Organic</h3>
+          <p class="text-td-brownLight text-sm leading-relaxed">Pure, chemical-free ingredients ensuring gentle, nourishing care for every skin type.</p>
+        </div>
+        <div data-r class="text-center bg-white p-8 sm:p-10 rounded-3xl shadow-sm hover:shadow-lg transition-shadow group" style="transition-delay:.12s">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-td-gold/10 to-td-goldWarm/15 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-td-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg>
+          </div>
+          <h3 class="font-serif text-td-bark text-xl sm:text-2xl mb-3">Nature's Best</h3>
+          <p class="text-td-brownLight text-sm leading-relaxed">Plant-based oils and nutrients to nourish, protect, and rejuvenate your skin naturally.</p>
+        </div>
+        <div data-r class="text-center bg-white p-8 sm:p-10 rounded-3xl shadow-sm hover:shadow-lg transition-shadow group" style="transition-delay:.18s">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-td-rose/10 to-td-peach/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-td-roseMuted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+          </div>
+          <h3 class="font-serif text-td-bark text-xl sm:text-2xl mb-3">Eco-Friendly</h3>
+          <p class="text-td-brownLight text-sm leading-relaxed">Vegan-friendly, cruelty-free products that are kind to the planet and your conscience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ REVIEWS ═══════════ -->
+  <section class="py-20 sm:py-28">
+    <div class="max-w-[1400px] mx-auto px-5 sm:px-8">
+      <div data-r class="text-center mb-14">
+        <p class="text-td-emerald text-[11px] font-semibold tracking-[.25em] uppercase mb-3">Testimonials</p>
+        <h2 class="font-serif fl-h2 text-td-bark tracking-[-0.02em]">Customer Reviews</h2>
+      </div>
+      <div class="rv-track flex gap-5 overflow-x-auto pb-4 -mx-5 px-5 snap-x snap-mandatory lg:grid lg:grid-cols-3 lg:mx-0 lg:px-0 lg:overflow-visible lg:pb-0">
+        <div data-r class="snap-start shrink-0 w-[82%] sm:w-[55%] lg:w-auto bg-white p-7 rounded-2xl shadow-sm border border-td-sage/15" style="transition-delay:.06s">
+          <div class="flex gap-0.5 mb-4"><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+          <p class="text-td-brown/80 text-sm italic leading-relaxed mb-6">"I enjoyed using the lavender and sunflower handmade soap... The smell is heaven. My skin feels so soft and moisturised after every wash."</p>
+          <div class="pt-4 border-t border-td-sage/15"><p class="font-serif text-td-forest font-semibold">Grace</p><p class="text-td-brownLight text-xs mt-0.5">First Time Customer</p></div>
+        </div>
+        <div data-r class="snap-start shrink-0 w-[82%] sm:w-[55%] lg:w-auto bg-white p-7 rounded-2xl shadow-sm border border-td-sage/15" style="transition-delay:.12s">
+          <div class="flex gap-0.5 mb-4"><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+          <p class="text-td-brown/80 text-sm italic leading-relaxed mb-6">"The organic shea butter cleared my stretch marks after giving birth. I can't believe how smooth my skin looks now. Absolutely incredible product!"</p>
+          <div class="pt-4 border-t border-td-sage/15"><p class="font-serif text-td-forest font-semibold">Folly</p><p class="text-td-brownLight text-xs mt-0.5">Shopper</p></div>
+        </div>
+        <div data-r class="snap-start shrink-0 w-[82%] sm:w-[55%] lg:w-auto bg-white p-7 rounded-2xl shadow-sm border border-td-sage/15" style="transition-delay:.18s">
+          <div class="flex gap-0.5 mb-4"><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg class="w-4 h-4 star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></div>
+          <p class="text-td-brown/80 text-sm italic leading-relaxed mb-6">"My sensitive skin allows me to use bars without fragrance. Triple Diamond's natural soap is the only one that doesn't cause any reactions!"</p>
+          <div class="pt-4 border-t border-td-sage/15"><p class="font-serif text-td-forest font-semibold">Rebecca</p><p class="text-td-brownLight text-xs mt-0.5">Fashion Designer</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="bg-td-forest text-white/60">
+    <div class="max-w-[1400px] mx-auto px-5 sm:px-8">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 py-8 border-b border-white/10 text-center">
+        <div><p class="text-white/90 text-xs font-medium mb-0.5">Secure Checkout</p><p class="text-white/40 text-[10px]">SSL encrypted</p></div>
+        <div><p class="text-white/90 text-xs font-medium mb-0.5">Free UK Shipping</p><p class="text-white/40 text-[10px]">Orders over £30</p></div>
+        <div><p class="text-white/90 text-xs font-medium mb-0.5">Handmade Fresh</p><p class="text-white/40 text-[10px]">Small batch crafted</p></div>
+        <div><p class="text-white/90 text-xs font-medium mb-0.5">Gift Wrapping</p><p class="text-white/40 text-[10px]">Available on request</p></div>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 py-14">
+        <div><img src="https://www.triplediamondmus.com/wp-content/uploads/2024/12/Triple-Diamond-handmade-logo.png" alt="Triple Diamond" class="h-10 brightness-0 invert opacity-60 mb-4" /><p class="text-sm leading-relaxed text-white/45 max-w-[260px]">Organic handmade soaps for radiant beauty and wellness.</p></div>
+        <div><p class="text-white/90 text-[11px] font-semibold tracking-[.15em] uppercase mb-4">Shop</p><div class="space-y-2"><a href="#" class="block text-sm text-white/45 hover:text-td-goldWarm transition-colors cursor-pointer">Handmade Soap</a><a href="#" class="block text-sm text-white/45 hover:text-td-goldWarm transition-colors cursor-pointer">Shea Butter</a><a href="#" class="block text-sm text-white/45 hover:text-td-goldWarm transition-colors cursor-pointer">Gift Sets</a></div></div>
+        <div><p class="text-white/90 text-[11px] font-semibold tracking-[.15em] uppercase mb-4">Company</p><div class="space-y-2"><a href="#story" class="block text-sm text-white/45 hover:text-td-goldWarm transition-colors cursor-pointer">About Us</a><a href="#" class="block text-sm text-white/45 hover:text-td-goldWarm transition-colors cursor-pointer">Contact</a><a href="#" class="block text-sm text-white/45 hover:text-td-goldWarm transition-colors cursor-pointer">Privacy Policy</a><a href="#" class="block text-sm text-white/45 hover:text-td-goldWarm transition-colors cursor-pointer">Shipping</a></div></div>
+        <div><p class="text-white/90 text-[11px] font-semibold tracking-[.15em] uppercase mb-4">Newsletter</p><p class="text-sm text-white/45 mb-4">Join for exclusive offers.</p><div class="flex"><input type="email" placeholder="your@email.com" aria-label="Email for newsletter" class="flex-1 bg-white/8 border border-white/15 px-4 py-2.5 text-sm text-white placeholder:text-white/30 rounded-l-full focus:outline-none focus:border-td-gold/50" /><button class="bg-td-gold text-td-forest px-5 py-2.5 text-xs font-semibold tracking-wider uppercase rounded-r-full hover:bg-td-goldLight transition-colors cursor-pointer">Join</button></div></div>
+      </div>
+      <div class="py-6 border-t border-white/8 text-center"><p class="text-[11px] text-white/30">&copy; 2026 Triple Diamond Multi Service. All rights reserved.</p></div>
     </div>
   </footer>
 
-  <!-- ═════════════════════════════════════════════ -->
-  <!--  SCRIPTS                                      -->
-  <!-- ═════════════════════════════════════════════ -->
   <script>
-    // Nav scroll
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('is-scrolled', scrollY > 50), { passive: true });
-
-    // Mobile menu
-    const mob = document.getElementById('mob'), mobBg = document.getElementById('mobBg');
-    document.getElementById('menuBtn').onclick = () => { mob.classList.add('open'); mobBg.classList.add('open'); document.body.style.overflow = 'hidden'; };
-    function closeMob() { mob.classList.remove('open'); mobBg.classList.remove('open'); document.body.style.overflow = ''; }
-
-    // Scroll reveal
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('v'); io.unobserve(e.target); } }), { threshold: .06, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('[data-r]').forEach(el => io.observe(el));
-
-    // Smooth anchors
-    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-      const h = a.getAttribute('href'); if (h === '#') return;
-      e.preventDefault(); document.querySelector(h)?.scrollIntoView({ behavior: 'smooth' });
-    }));
+    const nav=document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50),{passive:true});
+    const mob=document.getElementById('mob'),mobBg=document.getElementById('mobBg');
+    document.getElementById('menuBtn').onclick=()=>{mob.classList.add('open');mobBg.classList.add('open');document.body.style.overflow='hidden'};
+    function closeMob(){mob.classList.remove('open');mobBg.classList.remove('open');document.body.style.overflow=''}
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href');if(h==='#')return;e.preventDefault();document.querySelector(h)?.scrollIntoView({behavior:'smooth'})}));
   </script>
-
 </body>
 </html>
